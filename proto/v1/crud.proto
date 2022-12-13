@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package crud.v1;
+
+option go_package = "github.com/magartifex/employcity/proto/v1";
+
+service CRUD {
+  rpc Get (Empty) returns (Get.Response) {}
+  rpc GetByKey (GetByKey.Request) returns (GetByKey.Response) {}
+  rpc Set (Set.Request) returns (Set.Response) {}
+  rpc Delete (Delete.Request) returns (Empty) {}
+}
+
+message Empty {}
+
+message Data {
+  string key = 1;
+  string value = 2;
+}
+
+message Get {
+  message Response {
+    repeated Data list = 1;
+  }
+}
+
+message GetByKey {
+  message Request {
+    string key = 1;
+  }
+
+  message Response {
+    Data data = 1;
+  }
+}
+
+message Set {
+  message Request {
+    string value = 1;
+  }
+
+  message Response {
+    Data data = 1;
+  }
+}
+
+message Delete {
+  message Request {
+    string key = 1;
+  }
+}
